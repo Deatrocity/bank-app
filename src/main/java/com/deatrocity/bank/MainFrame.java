@@ -1,8 +1,9 @@
-package com.bank;
+package com.deatrocity.bank;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
@@ -16,6 +17,12 @@ public class MainFrame extends Application{
 
         // create scene with stack pane as root node
         Scene scene = new Scene(root, 400, 300);
+
+        // Making a Label
+        Label label = new Label("My Bank Application");
+
+        // Add label to the root stack pane
+        root.getChildren().add(label);
 
         // Set title of window
         primaryStage.setTitle("Bank Application");

@@ -1,6 +1,6 @@
-module com.bank {
+module com.deatocity.bank {
     requires transitive javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
-    exports com.bank;
+    exports com.deatrocity.bank;
 }
