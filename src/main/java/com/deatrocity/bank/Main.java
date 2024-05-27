@@ -1,7 +1,7 @@
-package com.bank;
+package com.deatrocity.bank;
 
 public class Main {
     public static void main(String[] args) {
-        //MainFrame.main(args);
+            
     }
 }
