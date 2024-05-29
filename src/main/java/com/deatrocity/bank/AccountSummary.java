@@ -5,8 +5,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-public class AccountSummary {
+public abstract class AccountSummary {
     
     public static HBox createAccountSummary(){
         HBox layout = new HBox();

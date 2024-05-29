@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 public class MainFrame extends Application{
 
+    
+
     @Override
     public void start(Stage primaryStage){
         // Set title of window
@@ -30,11 +32,37 @@ public class MainFrame extends Application{
         Label mainLabel = new Label("My Bank Application");
 
         // Add all nodes to scene
-        root.getChildren().addAll(mainLabel, loginFields(), loginButtons(primaryStage, mainScene));
+        root.getChildren().addAll(mainLabel, usernameNodes(), passwordNodes(), loginButtons(primaryStage, mainScene));
 
         // Set scene and show stage
         primaryStage.setScene(mainScene);
         primaryStage.show();
+    }
+
+    public HBox usernameNodes(){
+        HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER);
+
+        Label userNameLabel = new Label("Username");
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Username");
+
+        hbox.getChildren().addAll(userNameLabel, usernameField);
+
+        return hbox;
+    }
+
+    public HBox passwordNodes(){
+        HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER);
+
+        Label passwordLabel = new Label("Password");
+        TextField passwordField = new TextField();
+        passwordField.setPromptText("Password");
+
+        hbox.getChildren().addAll(passwordLabel, passwordField);
+
+        return hbox;
     }
 
     public VBox loginFields(){

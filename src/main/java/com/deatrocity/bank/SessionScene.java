@@ -10,8 +10,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SessionScene {
+
+    
     
     public static Scene createSessionScene(Stage primaryStage, Scene mainScene) {
+        return new Scene(root(primaryStage, mainScene), 600, 400);
+    }
+
+
+    public static VBox root(Stage primaryStage, Scene mainScene) {
         VBox root = new VBox();
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(20));
@@ -20,13 +27,13 @@ public class SessionScene {
         Label greetingLabel = new Label("Hello <name>");
 
         root.getChildren().addAll(
-            mainLabel, greetingLabel, navigationBox(), AccountSummary.createAccountSummary(),
+            mainLabel, greetingLabel, navigationBox(root), AccountSummary.createAccountSummary(),
             exitButtons(primaryStage, mainScene));
 
-        return new Scene(root, 600, 400);
+        return root;
     }
 
-    public static HBox navigationBox(){
+    public static HBox navigationBox(VBox root){
         // HBox holding four buttons for navigating account
         HBox navigationButtons = new HBox();
         navigationButtons.setAlignment(Pos.CENTER);
@@ -36,14 +43,17 @@ public class SessionScene {
         Button accountSummaryButton = new Button("Account Summary");
         accountSummaryButton.setPrefWidth(120);
         accountSummaryButton.setOnAction(e -> {
-            System.out.println("Account Summary");
+            root.getChildren().remove(3);
+            root.getChildren().add(3, AccountSummary.createAccountSummary());
+            
         });
 
         // Check Balance Button shows checkings and savings balance
         Button checkBalanceButton = new Button("Check Balance");
         checkBalanceButton.setPrefWidth(120);
         checkBalanceButton.setOnAction(e -> {
-            System.out.println("Check Balance");
+            root.getChildren().remove(3);
+            root.getChildren().add(3, CheckBalances.createCheckBalances());
         });
 
         // Deposit Button lets user deposit money into checkings or savings
