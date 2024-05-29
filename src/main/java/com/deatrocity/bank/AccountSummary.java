@@ -14,13 +14,13 @@ public abstract class AccountSummary {
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(30);
         layout.setPadding(new Insets(20));
+        layout.setMinHeight(450); // Set minimum height
+        layout.setPrefHeight(450); // Set preferred height
+        layout.setMaxHeight(450); // Set maximum height
 
+        Label label = new Label("Account Summary");
 
-        Label label = new Label("This is label 1");
-        ListView recentActivityList = new ListView();
-
-
-        layout.getChildren().addAll(label, recentActivityList);
+        layout.getChildren().addAll(label);
         return layout;
     }
 }

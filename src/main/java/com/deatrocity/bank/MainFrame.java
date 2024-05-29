@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -20,34 +21,40 @@ public class MainFrame extends Application{
         // Set title of window
         primaryStage.setTitle("Bank Application");
 
-        // create stackpane to hold content
-        VBox root = new VBox();
-        root.setAlignment(Pos.CENTER);
-        root.setPadding(new Insets(20));
+        VBox rootLayout = new VBox();
+        rootLayout.setAlignment(Pos.TOP_CENTER);
+        rootLayout.setPadding(new Insets(20));
 
         // create scene with VBox as root node
-        Scene mainScene = new Scene(root, 600, 400);
+        Scene mainScene = new Scene(rootLayout, 700, 600);
 
         // Labels
-        Label mainLabel = new Label("My Bank Application");
+        Label mainLabel = new Label("Deatrick Peoples Bank");
+        mainLabel.setFont(new Font("Arial", 30));
+        mainLabel.setPadding(new Insets(0, 0, 200, 0));
 
         // Add all nodes to scene
-        root.getChildren().addAll(mainLabel, usernameNodes(), passwordNodes(), loginButtons(primaryStage, mainScene));
+        rootLayout.getChildren().addAll(mainLabel, usernameNodes(), passwordNodes(), loginButtons(primaryStage, mainScene));
 
         // Set scene and show stage
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
 
-    public HBox usernameNodes(){
+    public static HBox usernameNodes(){
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
+        hbox.setPadding(new Insets(0, 0, 15, 0));
 
-        Label userNameLabel = new Label("Username");
+        Label usernameLabel = new Label("Username");
+        usernameLabel.setPadding(new Insets(0, 10, 0 , 0));
+        usernameLabel.setFont(new Font("Arial", 20));
+
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
+        usernameField.setPrefWidth(200);
 
-        hbox.getChildren().addAll(userNameLabel, usernameField);
+        hbox.getChildren().addAll(usernameLabel, usernameField);
 
         return hbox;
     }
@@ -55,10 +62,16 @@ public class MainFrame extends Application{
     public HBox passwordNodes(){
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
+        hbox.setPadding(new Insets(0, 0, 30, 0));
+        
 
         Label passwordLabel = new Label("Password");
+        passwordLabel.setPadding(new Insets(0, 10, 0 , 0));
+        passwordLabel.setFont(new Font("Arial", 20));
+
         TextField passwordField = new TextField();
         passwordField.setPromptText("Password");
+        passwordField.setPrefWidth(200);
 
         hbox.getChildren().addAll(passwordLabel, passwordField);
 

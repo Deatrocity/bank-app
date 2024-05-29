@@ -9,10 +9,13 @@ import javafx.scene.layout.HBox;
 public class CheckBalances {
 
     public static HBox createCheckBalances(){
-        HBox layout = new HBox();
-        layout.setAlignment(Pos.CENTER);
-        layout.setSpacing(30);
-        layout.setPadding(new Insets(20));
+        HBox rootLayout = new HBox();
+        rootLayout.setAlignment(Pos.CENTER);
+        rootLayout.setSpacing(30);
+        rootLayout.setPadding(new Insets(20));
+        rootLayout.setMinHeight(450); // Set minimum height
+        rootLayout.setPrefHeight(450); // Set preferred height
+        rootLayout.setMaxHeight(450); // Set maximum height
 
 
         Label checkingLabel = new Label("Checking");
@@ -21,8 +24,8 @@ public class CheckBalances {
         ListView savingRecentActivity = new ListView();
 
 
-        layout.getChildren().addAll(checkingLabel, savingLabel, checkingRecentActivity, savingRecentActivity);
-        return layout;
+        rootLayout.getChildren().addAll(checkingLabel, checkingRecentActivity, savingLabel, savingRecentActivity);
+        return rootLayout;
     }
     
 }
