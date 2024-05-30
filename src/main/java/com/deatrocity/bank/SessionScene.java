@@ -10,12 +10,31 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * SessionScene class that sets the scene for user account management.
+ * This class creates the scene displayed after a successful login.
+ */
 public class SessionScene {
 
+    /**
+     * Creates the session scene.
+     *
+     * @param primaryStage The primary stage of the application.
+     * @param mainScene    The main scene of the application.
+     * @return The scene for the session.
+     */
     public static Scene createSessionScene(Stage primaryStage, Scene mainScene) {
         return new Scene(createRootLayout(primaryStage, mainScene), 700, 620);
     }
 
+
+    /**
+     * Creates the root layout for the session scene.
+     *
+     * @param primaryStage The primary stage of the application.
+     * @param mainScene    The main scene of the application.
+     * @return The root layout for the session scene.
+     */
     public static VBox createRootLayout(Stage primaryStage, Scene mainScene) {
         VBox rootLayout = new VBox();
         rootLayout.setAlignment(Pos.TOP_CENTER);
@@ -36,6 +55,13 @@ public class SessionScene {
         return rootLayout;
     }
 
+
+    /**
+     * Creates the navigation buttons box.
+     *
+     * @param rootLayout The root layout of the session scene.
+     * @return The HBox containing navigation buttons.
+     */
     public static HBox navigationBox(VBox rootLayout){
         // HBox holding four buttons for navigating account
         HBox navigationButtons = new HBox();
@@ -79,6 +105,14 @@ public class SessionScene {
         return navigationButtons;
     }
 
+
+    /**
+     * Creates the exit buttons box.
+     *
+     * @param primaryStage The primary stage of the application.
+     * @param mainScene    The main scene of the application.
+     * @return The HBox containing exit buttons.
+     */
     public static HBox exitButtons(Stage primaryStage, Scene mainScene){
         // Hbox stores exit and logout buttons horizontally - exit button is WIP
         HBox exitButtons = new HBox();
