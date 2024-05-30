@@ -6,23 +6,30 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
+/**
+ * Deposit class responsible for creating the layout for deposit functionality.
+ * This class provides a method to create the layout for depositing funds.
+ */
 public class Deposit {
     
+     /**
+     * Creates the layout for deposit functionality.
+     *
+     * @return The HBox containing the layout for depositing funds.
+     */
     public static HBox createDeposit(){
-        HBox layout = new HBox();
-        layout.setAlignment(Pos.CENTER);
-        layout.setSpacing(30);
-        layout.setPadding(new Insets(20));
-        layout.setMinHeight(450); // Set minimum height
-        layout.setPrefHeight(450); // Set preferred height
-        layout.setMaxHeight(450); // Set maximum height
-
+        HBox rootLayout = new HBox();
+        rootLayout.setAlignment(Pos.CENTER);
+        rootLayout.setSpacing(30);
+        rootLayout.setPadding(new Insets(20));
+        rootLayout.setMinHeight(450); // Set minimum height
+        rootLayout.setPrefHeight(450); // Set preferred height
+        rootLayout.setMaxHeight(450); // Set maximum height
 
         Label mainLabel = new Label("Deposit!");
-        
 
-
-        layout.getChildren().addAll(mainLabel);
-        return layout;
+        // Add nodes to rootLayout of HBox
+        rootLayout.getChildren().addAll(mainLabel);
+        return rootLayout;
     }
 }

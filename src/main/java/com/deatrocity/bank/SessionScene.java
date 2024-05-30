@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class SessionScene {
 
     public static Scene createSessionScene(Stage primaryStage, Scene mainScene) {
-        return new Scene(createRootLayout(primaryStage, mainScene), 700, 600);
+        return new Scene(createRootLayout(primaryStage, mainScene), 700, 620);
     }
 
     public static VBox createRootLayout(Stage primaryStage, Scene mainScene) {
@@ -22,9 +22,12 @@ public class SessionScene {
         rootLayout.setPadding(new Insets(20));
 
         Label mainLabel = new Label("Deatrick Peoples Bank");
+        mainLabel.setPadding(new Insets(0, 0, 10 , 0));
         mainLabel.setFont(new Font("Arial", 30));
 
-        Label greetingLabel = new Label("Hello <name>");
+        Label greetingLabel = new Label("Hello, Ethan!");
+        greetingLabel.setPadding(new Insets(0, 0, 15 , 0));
+        greetingLabel.setFont(new Font("Arial", 15));
 
         rootLayout.getChildren().addAll(
             mainLabel, greetingLabel, navigationBox(rootLayout), AccountSummary.createAccountSummary(),
@@ -37,7 +40,7 @@ public class SessionScene {
         // HBox holding four buttons for navigating account
         HBox navigationButtons = new HBox();
         navigationButtons.setAlignment(Pos.CENTER);
-        navigationButtons.setSpacing(15);
+        navigationButtons.setSpacing(20);
 
         // Account Summary button shows information about user account
         Button accountSummaryButton = new Button("Account Summary");
