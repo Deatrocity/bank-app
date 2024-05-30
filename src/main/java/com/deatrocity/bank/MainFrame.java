@@ -12,35 +12,41 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * MainFrame class that extends the JavaFX Application class.
+ * This class sets up the primary stage for the bank application.
+ */
 public class MainFrame extends Application{
-
-    
-
     @Override
     public void start(Stage primaryStage){
         // Set title of window
         primaryStage.setTitle("Bank Application");
 
+         // Create the root layout and set its properties
         VBox rootLayout = new VBox();
         rootLayout.setAlignment(Pos.TOP_CENTER);
         rootLayout.setPadding(new Insets(20));
 
-        // create scene with VBox as root node
-        Scene mainScene = new Scene(rootLayout, 700, 600);
+        // Create a scene with VBox as the root node
+        Scene mainScene = new Scene(rootLayout, 700, 620);
 
-        // Labels
+        // Create and style main label
         Label mainLabel = new Label("Deatrick Peoples Bank");
         mainLabel.setFont(new Font("Arial", 30));
         mainLabel.setPadding(new Insets(0, 0, 200, 0));
 
-        // Add all nodes to scene
+        // Add all nodes to the scene
         rootLayout.getChildren().addAll(mainLabel, usernameNodes(), passwordNodes(), loginButtons(primaryStage, mainScene));
 
-        // Set scene and show stage
+        // Set the Scene and show the stage
         primaryStage.setScene(mainScene);
         primaryStage.show();
     }
 
+    /**
+     * Creates the HBox containing username label and text field.
+     * @return HBox with username nodes.
+     */
     public static HBox usernameNodes(){
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
@@ -59,6 +65,10 @@ public class MainFrame extends Application{
         return hbox;
     }
 
+    /**
+     * Creates the HBox containing password label and text field.
+     * @return HBox with password nodes.
+     */
     public HBox passwordNodes(){
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
@@ -78,15 +88,18 @@ public class MainFrame extends Application{
         return hbox;
     }
 
+    /**
+     * Creates the VBox containing text fields for username and password input.
+     * @return VBox with login fields.
+     */
     public VBox loginFields(){
-        // VBox containing textfields for username and password input
         VBox fields = new VBox();
         fields.setAlignment(Pos.CENTER);
         fields.setMaxWidth(200);
-        // username text field
+
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
-        // password text field
+
         TextField passwordField = new TextField();
         passwordField.setPromptText("Password");
 
@@ -94,20 +107,24 @@ public class MainFrame extends Application{
         return fields;
     }
 
+
+    /**
+     * Creates the HBox containing login and register buttons.
+     * @param primaryStage The primary stage of the application.
+     * @param mainScene The main scene of the application.
+     * @return HBox with login buttons.
+     */
     public HBox loginButtons(Stage primaryStage, Scene mainScene){
-        // HBox holding two buttons to let user login or register a new account
         HBox buttons = new HBox();
         buttons.setAlignment(Pos.CENTER);
         buttons.setSpacing(15);
 
-        // login button
         Button loginButton = new Button("Login");
         loginButton.setPrefWidth(120);
         loginButton.setOnAction(e -> {
             primaryStage.setScene(SessionScene.createSessionScene(primaryStage, mainScene));
         });
 
-        // register button
         Button registerButton = new Button("Register");
         registerButton.setPrefWidth(120);
 
@@ -115,6 +132,10 @@ public class MainFrame extends Application{
         return buttons;
     }
 
+    /**
+     * The main method to launch the JavaFX application.
+     * @param args Command line arguments.
+     */
     public static void main(String args[]){
         launch(args);
     }

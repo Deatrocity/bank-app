@@ -6,8 +6,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 
+/**
+ * CheckBalances class responsible for creating the layout to display account balances.
+ * This class provides a method to create the layout for checking and saving account balances.
+ */
 public class CheckBalances {
 
+     /**
+     * Creates the layout to display checking and saving account balances.
+     *
+     * @return The HBox containing the layout for checking and saving account balances.
+     */
     public static HBox createCheckBalances(){
         HBox rootLayout = new HBox();
         rootLayout.setAlignment(Pos.CENTER);
@@ -23,7 +32,7 @@ public class CheckBalances {
         ListView checkingRecentActivity = new ListView();
         ListView savingRecentActivity = new ListView();
 
-
+        // Add nodes to rootLayout of check balances HBox
         rootLayout.getChildren().addAll(checkingLabel, checkingRecentActivity, savingLabel, savingRecentActivity);
         return rootLayout;
     }
