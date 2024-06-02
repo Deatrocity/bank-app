@@ -17,26 +17,39 @@ import javafx.stage.Stage;
  * This class sets up the primary stage for the bank application.
  */
 public class MainFrame extends Application{
+
+    private Scene mainScene;
+    private HBox usernameHBox, passwordHBox, topButtons;
+    private VBox rootLayout;
+    private Label mainLabel, usernameLabel, passwordLabel;
+    private TextField usernameField, passwordField;
+    private Button loginButton, clearButton, registerButton;
+
     @Override
     public void start(Stage primaryStage){
         // Set title of window
         primaryStage.setTitle("Bank Application");
 
          // Create the root layout and set its properties
-        VBox rootLayout = new VBox();
+        rootLayout = new VBox();
         rootLayout.setAlignment(Pos.TOP_CENTER);
         rootLayout.setPadding(new Insets(20));
 
         // Create a scene with VBox as the root node
-        Scene mainScene = new Scene(rootLayout, 700, 620);
+        mainScene = new Scene(rootLayout, 700, 620);
 
         // Create and style main label
-        Label mainLabel = new Label("Deatrick Peoples Bank");
+        mainLabel = new Label("Deatrick Peoples Bank");
         mainLabel.setFont(new Font("Arial", 30));
         mainLabel.setPadding(new Insets(0, 0, 200, 0));
 
+        // Create register button
+        registerButton = new Button("Register");
+        registerButton.setPrefWidth(120);
+        registerButton.setOnAction(e -> {}); // WIP
+
         // Add all nodes to the scene
-        rootLayout.getChildren().addAll(mainLabel, usernameNodes(), passwordNodes(), loginButtons(primaryStage, mainScene));
+        rootLayout.getChildren().addAll(mainLabel, usernameNodes(), passwordNodes(), topButtons(primaryStage), registerButton);
 
         // Set the Scene and show the stage
         primaryStage.setScene(mainScene);
@@ -47,22 +60,22 @@ public class MainFrame extends Application{
      * Creates the HBox containing username label and text field.
      * @return HBox with username nodes.
      */
-    public static HBox usernameNodes(){
-        HBox hbox = new HBox();
-        hbox.setAlignment(Pos.CENTER);
-        hbox.setPadding(new Insets(0, 0, 15, 0));
+    public HBox usernameNodes(){
+        usernameHBox = new HBox();
+        usernameHBox.setAlignment(Pos.CENTER);
+        usernameHBox.setPadding(new Insets(0, 0, 15, 0));
 
-        Label usernameLabel = new Label("Username");
+        usernameLabel = new Label("Username");
         usernameLabel.setPadding(new Insets(0, 10, 0 , 0));
         usernameLabel.setFont(new Font("Arial", 20));
 
-        TextField usernameField = new TextField();
+        usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.setPrefWidth(200);
 
-        hbox.getChildren().addAll(usernameLabel, usernameField);
+        usernameHBox.getChildren().addAll(usernameLabel, usernameField);
 
-        return hbox;
+        return usernameHBox;
     }
 
     /**
@@ -70,43 +83,22 @@ public class MainFrame extends Application{
      * @return HBox with password nodes.
      */
     public HBox passwordNodes(){
-        HBox hbox = new HBox();
-        hbox.setAlignment(Pos.CENTER);
-        hbox.setPadding(new Insets(0, 0, 30, 0));
-        
+        passwordHBox = new HBox();
+        passwordHBox.setAlignment(Pos.CENTER);
+        passwordHBox.setPadding(new Insets(0, 0, 30, 0));
 
-        Label passwordLabel = new Label("Password");
+        passwordLabel = new Label("Password");
         passwordLabel.setPadding(new Insets(0, 10, 0 , 0));
         passwordLabel.setFont(new Font("Arial", 20));
 
-        TextField passwordField = new TextField();
+        passwordField = new TextField();
         passwordField.setPromptText("Password");
         passwordField.setPrefWidth(200);
 
-        hbox.getChildren().addAll(passwordLabel, passwordField);
+        passwordHBox.getChildren().addAll(passwordLabel, passwordField);
 
-        return hbox;
+        return passwordHBox;
     }
-
-    /**
-     * Creates the VBox containing text fields for username and password input.
-     * @return VBox with login fields.
-     */
-    public VBox loginFields(){
-        VBox fields = new VBox();
-        fields.setAlignment(Pos.CENTER);
-        fields.setMaxWidth(200);
-
-        TextField usernameField = new TextField();
-        usernameField.setPromptText("Username");
-
-        TextField passwordField = new TextField();
-        passwordField.setPromptText("Password");
-
-        fields.getChildren().addAll(usernameField, passwordField);
-        return fields;
-    }
-
 
     /**
      * Creates the HBox containing login and register buttons.
@@ -114,22 +106,27 @@ public class MainFrame extends Application{
      * @param mainScene The main scene of the application.
      * @return HBox with login buttons.
      */
-    public HBox loginButtons(Stage primaryStage, Scene mainScene){
-        HBox buttons = new HBox();
-        buttons.setAlignment(Pos.CENTER);
-        buttons.setSpacing(15);
+    public HBox topButtons(Stage primaryStage){
+        topButtons = new HBox();
+        topButtons.setAlignment(Pos.CENTER);
+        topButtons.setSpacing(15);
+        topButtons.setPadding(new Insets(0, 0, 10, 0));
 
-        Button loginButton = new Button("Login");
+        loginButton = new Button("Login");
         loginButton.setPrefWidth(120);
         loginButton.setOnAction(e -> {
             primaryStage.setScene(SessionScene.createSessionScene(primaryStage, mainScene));
         });
 
-        Button registerButton = new Button("Register");
-        registerButton.setPrefWidth(120);
-
-        buttons.getChildren().addAll(loginButton, registerButton);
-        return buttons;
+        clearButton = new Button("Clear");
+        clearButton.setPrefWidth(120);
+        clearButton.setOnAction(e -> {
+            passwordField.clear();
+            usernameField.clear();
+        });
+        
+        topButtons.getChildren().addAll(loginButton, clearButton);
+        return topButtons;
     }
 
     /**
