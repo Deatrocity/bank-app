@@ -75,7 +75,7 @@ public class MainFrame extends Application{
 
         usernameField = new TextField();
         usernameField.setPromptText("Username");
-        usernameField.setPrefWidth(200);
+        usernameField.setPrefWidth(250);
 
         usernameHBox.getChildren().addAll(usernameLabel, usernameField);
         return usernameHBox;
@@ -96,7 +96,7 @@ public class MainFrame extends Application{
 
         passwordField = new PasswordField();
         passwordField.setPromptText("Password");
-        passwordField.setPrefWidth(200);
+        passwordField.setPrefWidth(250);
 
         passwordHBox.getChildren().addAll(passwordLabel, passwordField);
 
