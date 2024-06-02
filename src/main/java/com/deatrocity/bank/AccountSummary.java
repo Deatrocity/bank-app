@@ -15,6 +15,9 @@ import javafx.scene.text.FontWeight;
  * This class provides a method to create the layout for checking and saving account balances.
  */
 public abstract class AccountSummary {
+
+    private static HBox rootLayout, leftRoot, rightRoot;
+    private static VBox leftRootl, leftRootr, rightRootl, rightRootr;
     
      /**
      * Creates the layout for displaying account summary information.
@@ -22,7 +25,7 @@ public abstract class AccountSummary {
      * @return The HBox containing the layout for account summary.
      */
     public static HBox createAccountSummary(){
-        HBox rootLayout = new HBox();
+        rootLayout = new HBox();
         rootLayout.setAlignment(Pos.CENTER);
         rootLayout.setSpacing(60); // Space between left root and right root
         rootLayout.setPadding(new Insets(80, 20, 20, 20));
@@ -66,7 +69,7 @@ public abstract class AccountSummary {
         Button changePassword = new Button("Change Password");
 
         // Set font for labels
-        Font font = Font.font("Arial", FontWeight.BOLD, 16); // Specify your desired font and size
+        Font font = Font.font("Arial", FontWeight.BOLD, 14); // Specify your desired font and size
         name.setFont(font);
         email.setFont(font);
         password.setFont(font);
@@ -86,7 +89,7 @@ public abstract class AccountSummary {
         Label creationDateValue = new Label("5/29/2024");
 
         // Set font for labels
-        Font font = new Font("Arial", 16); // Specify your desired font and size
+        Font font = new Font("Arial", 12); // Specify your desired font and size
         nameValue.setFont(font);
         emailValue.setFont(font);
         passwordValue.setFont(font);
@@ -110,7 +113,7 @@ public abstract class AccountSummary {
         Label checkingLabel = new Label("Checking:");
         Label savingsLabel = new Label("Savings:");
 
-        Font font = Font.font("Arial", FontWeight.BOLD, 16); // Specify bold font and size
+        Font font = Font.font("Arial", FontWeight.BOLD, 14); // Specify bold font and size
         checkingLabel.setFont(font);
         savingsLabel.setFont(font);
 
@@ -126,7 +129,7 @@ public abstract class AccountSummary {
         Label savingsValue = new Label("$152,343,206.23");
 
         // Set font for labels
-        Font font = new Font("Arial", 16); // Specify your desired font and size
+        Font font = new Font("Arial", 14); // Specify your desired font and size
         checkingValue.setFont(font);
         savingsValue.setFont(font);
 
