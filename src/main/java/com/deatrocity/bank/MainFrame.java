@@ -48,7 +48,9 @@ public class MainFrame extends Application{
         // Create register button
         registerButton = new Button("Register");
         registerButton.setPrefWidth(120);
-        registerButton.setOnAction(e -> {System.out.println(">>Register!<<");}); // WIP
+        registerButton.setOnAction(e -> {
+            RegisterScene registerScene = new RegisterScene(primaryStage, mainScene);
+            primaryStage.setScene(registerScene.createRegisterScene());});
 
         // Add all nodes to the scene
         rootLayout.getChildren().addAll(mainLabel, createUsernameNodes(), createPasswordNodes(), createTopButtons(primaryStage), registerButton);
@@ -136,6 +138,7 @@ public class MainFrame extends Application{
      * @param args Command line arguments.
      */
     public static void main(String args[]){
+        User user = new User("deatrick325", "password123", "Ethan", "Deatrick", "ethan@ethan.com");
         launch(args);
     }
 }
