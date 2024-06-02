@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -22,7 +23,8 @@ public class MainFrame extends Application{
     private HBox usernameHBox, passwordHBox, topButtons;
     private VBox rootLayout;
     private Label mainLabel, usernameLabel, passwordLabel;
-    private TextField usernameField, passwordField;
+    private TextField usernameField;
+    private PasswordField passwordField;
     private Button loginButton, clearButton, registerButton;
 
     @Override
@@ -36,7 +38,7 @@ public class MainFrame extends Application{
         rootLayout.setPadding(new Insets(20));
 
         // Create a scene with VBox as the root node
-        mainScene = new Scene(rootLayout, 700, 620);
+        mainScene = new Scene(rootLayout, 750, 620);
 
         // Create and style main label
         mainLabel = new Label("Deatrick Peoples Bank");
@@ -46,10 +48,10 @@ public class MainFrame extends Application{
         // Create register button
         registerButton = new Button("Register");
         registerButton.setPrefWidth(120);
-        registerButton.setOnAction(e -> {}); // WIP
+        registerButton.setOnAction(e -> {System.out.println(">>Register!<<");}); // WIP
 
         // Add all nodes to the scene
-        rootLayout.getChildren().addAll(mainLabel, usernameNodes(), passwordNodes(), topButtons(primaryStage), registerButton);
+        rootLayout.getChildren().addAll(mainLabel, createUsernameNodes(), createPasswordNodes(), createTopButtons(primaryStage), registerButton);
 
         // Set the Scene and show the stage
         primaryStage.setScene(mainScene);
@@ -60,7 +62,7 @@ public class MainFrame extends Application{
      * Creates the HBox containing username label and text field.
      * @return HBox with username nodes.
      */
-    public HBox usernameNodes(){
+    public HBox createUsernameNodes(){
         usernameHBox = new HBox();
         usernameHBox.setAlignment(Pos.CENTER);
         usernameHBox.setPadding(new Insets(0, 0, 15, 0));
@@ -74,7 +76,6 @@ public class MainFrame extends Application{
         usernameField.setPrefWidth(200);
 
         usernameHBox.getChildren().addAll(usernameLabel, usernameField);
-
         return usernameHBox;
     }
 
@@ -82,7 +83,7 @@ public class MainFrame extends Application{
      * Creates the HBox containing password label and text field.
      * @return HBox with password nodes.
      */
-    public HBox passwordNodes(){
+    public HBox createPasswordNodes(){
         passwordHBox = new HBox();
         passwordHBox.setAlignment(Pos.CENTER);
         passwordHBox.setPadding(new Insets(0, 0, 30, 0));
@@ -91,7 +92,7 @@ public class MainFrame extends Application{
         passwordLabel.setPadding(new Insets(0, 10, 0 , 0));
         passwordLabel.setFont(new Font("Arial", 20));
 
-        passwordField = new TextField();
+        passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.setPrefWidth(200);
 
@@ -106,7 +107,7 @@ public class MainFrame extends Application{
      * @param mainScene The main scene of the application.
      * @return HBox with login buttons.
      */
-    public HBox topButtons(Stage primaryStage){
+    public HBox createTopButtons(Stage primaryStage){
         topButtons = new HBox();
         topButtons.setAlignment(Pos.CENTER);
         topButtons.setSpacing(15);
@@ -115,7 +116,8 @@ public class MainFrame extends Application{
         loginButton = new Button("Login");
         loginButton.setPrefWidth(120);
         loginButton.setOnAction(e -> {
-            primaryStage.setScene(SessionScene.createSessionScene(primaryStage, mainScene));
+            SessionScene sessionScene = new SessionScene(primaryStage, mainScene);
+            primaryStage.setScene(sessionScene.createSessionScene());
         });
 
         clearButton = new Button("Clear");

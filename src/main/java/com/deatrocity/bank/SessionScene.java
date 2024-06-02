@@ -16,6 +16,19 @@ import javafx.stage.Stage;
  */
 public class SessionScene {
 
+    private Scene sessionScene, mainScene;
+    private Stage primaryStage;
+    private VBox rootLayout;
+    private HBox navigationButtons, exitButtons;
+    private Label mainLabel, greetingLabel;
+    private Button accountSummaryButton, checkBalanceButton, depositButton, withdrawButton, 
+        logoutButton;
+
+    SessionScene(Stage primaryStage, Scene mainScene){
+        this.primaryStage = primaryStage;
+        this.mainScene = mainScene;
+    }
+
     /**
      * Creates the session scene.
      *
@@ -23,10 +36,10 @@ public class SessionScene {
      * @param mainScene    The main scene of the application.
      * @return The scene for the session.
      */
-    public static Scene createSessionScene(Stage primaryStage, Scene mainScene) {
-        return new Scene(createRootLayout(primaryStage, mainScene), 700, 620);
+    public Scene createSessionScene() {
+        sessionScene = new Scene(rootLayout(), 750, 620);
+        return sessionScene;
     }
-
 
     /**
      * Creates the root layout for the session scene.
@@ -35,16 +48,16 @@ public class SessionScene {
      * @param mainScene    The main scene of the application.
      * @return The root layout for the session scene.
      */
-    public static VBox createRootLayout(Stage primaryStage, Scene mainScene) {
-        VBox rootLayout = new VBox();
+    public VBox rootLayout() {
+        rootLayout = new VBox();
         rootLayout.setAlignment(Pos.TOP_CENTER);
         rootLayout.setPadding(new Insets(20));
 
-        Label mainLabel = new Label("Deatrick Peoples Bank");
+        mainLabel = new Label("Deatrick Peoples Bank");
         mainLabel.setPadding(new Insets(0, 0, 10 , 0));
         mainLabel.setFont(new Font("Arial", 30));
 
-        Label greetingLabel = new Label("Hello, Ethan!");
+        greetingLabel = new Label("Hello, Ethan!");
         greetingLabel.setPadding(new Insets(0, 0, 15 , 0));
         greetingLabel.setFont(new Font("Arial", 15));
 
@@ -62,14 +75,14 @@ public class SessionScene {
      * @param rootLayout The root layout of the session scene.
      * @return The HBox containing navigation buttons.
      */
-    public static HBox navigationBox(VBox rootLayout){
+    public HBox navigationBox(VBox rootLayout){
         // HBox holding four buttons for navigating account
-        HBox navigationButtons = new HBox();
+        navigationButtons = new HBox();
         navigationButtons.setAlignment(Pos.CENTER);
         navigationButtons.setSpacing(20);
 
         // Account Summary button shows information about user account
-        Button accountSummaryButton = new Button("Account Summary");
+        accountSummaryButton = new Button("Account Summary");
         accountSummaryButton.setPrefWidth(120);
         accountSummaryButton.setOnAction(e -> {
             rootLayout.getChildren().remove(3);
@@ -78,7 +91,7 @@ public class SessionScene {
         });
 
         // Check Balance Button shows checkings and savings balance
-        Button checkBalanceButton = new Button("Check Balance");
+        checkBalanceButton = new Button("Check Balance");
         checkBalanceButton.setPrefWidth(120);
         checkBalanceButton.setOnAction(e -> {
             rootLayout.getChildren().remove(3);
@@ -86,7 +99,7 @@ public class SessionScene {
         });
 
         // Deposit Button lets user deposit money into checkings or savings
-        Button depositButton = new Button("Deposit");
+        depositButton = new Button("Deposit");
         depositButton.setPrefWidth(120);
         depositButton.setOnAction(e -> {
             rootLayout.getChildren().remove(3);
@@ -94,7 +107,7 @@ public class SessionScene {
         });
 
         // Withdraw Button lets user withdraw money from checkings or savings
-        Button withdrawButton = new Button("Withdraw");
+        withdrawButton = new Button("Withdraw");
         withdrawButton.setPrefWidth(120);
         withdrawButton.setOnAction(e -> {
             rootLayout.getChildren().remove(3);
@@ -113,14 +126,14 @@ public class SessionScene {
      * @param mainScene    The main scene of the application.
      * @return The HBox containing exit buttons.
      */
-    public static HBox exitButtons(Stage primaryStage, Scene mainScene){
+    public HBox exitButtons(Stage primaryStage, Scene mainScene){
         // Hbox stores exit and logout buttons horizontally - exit button is WIP
-        HBox exitButtons = new HBox();
+        exitButtons = new HBox();
         exitButtons.setAlignment(Pos.CENTER);
         exitButtons.setPrefWidth(120);
 
         // Logout Button ends user session and returns to main frame
-        Button logoutButton = new Button("Logout");
+        logoutButton = new Button("Logout");
         logoutButton.setPrefWidth(120);
         logoutButton.setOnAction(e -> {
             primaryStage.setScene(mainScene);
