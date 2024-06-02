@@ -22,9 +22,9 @@ public class Deposit {
         rootLayout.setAlignment(Pos.CENTER);
         rootLayout.setSpacing(30);
         rootLayout.setPadding(new Insets(20));
-        rootLayout.setMinHeight(450); // Set minimum height
-        rootLayout.setPrefHeight(450); // Set preferred height
-        rootLayout.setMaxHeight(450); // Set maximum height
+        rootLayout.setMinHeight(450);
+        rootLayout.setPrefHeight(450);
+        rootLayout.setMaxHeight(450);
 
         Label mainLabel = new Label("Deposit!");
 
