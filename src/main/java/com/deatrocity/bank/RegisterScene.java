@@ -137,10 +137,6 @@ public class RegisterScene {
         registerButton.setOnAction(e -> {
             if(validateFields()){
                 user = new User(username, password, firstName, lastName, email);
-                System.out.println("Hello!" + user.getFirstName() + " " + user.getLastName());
-                System.out.format("Your username: %s", user.getUserName());
-                System.out.format("Your password: %s", user.getPassWord());
-                System.out.format("Your email: %s", user.getEmail());
             } else {
                 System.out.println("Fields left empty or passwords dont match");
             }
