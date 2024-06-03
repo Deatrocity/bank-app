@@ -24,6 +24,8 @@ public class RegisterScene {
         lastNameField;
     private PasswordField passwordField, confirmField;
     private Button registerButton, backButton;
+    private User user;
+    private String username, password, confirmPassword, firstName, lastName, email;
 
     RegisterScene(Stage primaryStage, Scene mainScene){
         this.primaryStage = primaryStage;
@@ -61,36 +63,55 @@ public class RegisterScene {
         inputLabels = new VBox();
         inputLabels.setAlignment(Pos.CENTER_RIGHT);
         inputLabels.setSpacing(22);
+
         usernameLabel = new Label("Username");
         usernameLabel.setFont(new Font("Arial", 15));
+
         passwordLabel = new Label("Password");
         passwordLabel.setFont(new Font("Arial", 15));
+
         confirmLabel = new Label("Confirm Password");
         confirmLabel.setFont(new Font("Arial", 15));
+
         firstNameLabel = new Label("First Name");
         firstNameLabel.setFont(new Font("Arial", 15));
+
         lastNameLabel = new Label("Last Name");
         lastNameLabel.setFont(new Font("Arial", 15));
+
         emailLabel = new Label("Email Address");
         emailLabel.setFont(new Font("Arial", 15));
+
         inputLabels.getChildren().addAll(usernameLabel, passwordLabel, confirmLabel, 
         firstNameLabel, lastNameLabel, emailLabel);
 
         inputFields = new VBox();
         inputFields.setPrefWidth(250);
         inputFields.setSpacing(10);
+
         usernameField = new TextField();
         usernameField.setFont(new Font("Arial", 16));
+        usernameField.setPromptText("Username");
+
         passwordField = new PasswordField();
         passwordField.setFont(new Font("Arial", 16));
+        passwordField.setPromptText("Password");
+
         confirmField = new PasswordField();
         confirmField.setFont(new Font("Arial", 16));
+        confirmField.setPromptText("Confirm Password");
+
         firstNameField = new TextField();
         firstNameField.setFont(new Font("Arial", 16));
+        firstNameField.setPromptText("First Name");
+
         lastNameField = new TextField();
         lastNameField.setFont(new Font("Arial", 16));
+        lastNameField.setPromptText("Last Name");
+
         emailField = new TextField();
         emailField.setFont(new Font("Arial", 16));
+        emailField.setPromptText("Email");
         inputFields.getChildren().addAll(usernameField, passwordField, confirmField, firstNameField, 
             lastNameField, emailField);
 
@@ -113,9 +134,59 @@ public class RegisterScene {
 
         registerButton = new Button("Register User");
         registerButton.setPrefWidth(120);
-        registerButton.setOnAction(e -> {});
+        registerButton.setOnAction(e -> {
+            if(validateFields()){
+                user = new User(username, password, firstName, lastName, email);
+                System.out.println("Hello!" + user.getFirstName() + " " + user.getLastName());
+                System.out.format("Your username: %s", user.getUserName());
+                System.out.format("Your password: %s", user.getPassWord());
+                System.out.format("Your email: %s", user.getEmail());
+            } else {
+                System.out.println("Fields left empty or passwords dont match");
+            }
+        });
 
         navigationButtons.getChildren().addAll(backButton, registerButton);
         return navigationButtons;
+    }
+
+    public Boolean validateFields(){
+        boolean validated = true;
+        
+        username = usernameField.getText();
+        if (username == null || username.trim().isEmpty()) {
+            validated = false;
+        }
+
+        password = passwordField.getText();
+        if (password == null || password.trim().isEmpty()) {
+            validated = false;
+        }
+
+        confirmPassword = confirmField.getText();
+        if (confirmPassword == null || confirmPassword.trim().isEmpty()) {
+            validated = false;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            validated = false;
+        }
+
+        firstName = firstNameField.getText();
+        if (firstName == null || firstName.trim().isEmpty()) {
+            validated = false;
+        }
+
+        lastName = lastNameField.getText();
+        if (lastName == null || lastName.trim().isEmpty()) {
+            validated = false;
+        }
+
+        email = emailField.getText();
+        if (email == null || email.trim().isEmpty()) {
+            validated = false;
+        }
+
+        return validated;
     }
 }
